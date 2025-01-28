@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Average Calculator</title>
+    
+</head>
+<body>
+    <h1>Course Average Calculator</h1>
+    <script>
+        // Prompt user for the number of courses 
+        let numOfCourses = parseInt(prompt("How many courses did you finish?", "0"));
+
+        if (isNaN(numOfCourses) || numOfCourses <= 0) {
+            document.write("<p>Invalid Input! Please refresh the page and enter a valid number of courses.</p>");
+        } else {
+            let courseMarks = [];
+            let total = 0;
+
+            // Collect course marks 
+            for (let i = 1; i <= numOfCourses; i++) {
+                let mark = parseFloat(prompt(`Enter your mark for course ${i}:`));
+                if (isNaN(mark) || mark < 0 || mark > 100) {
+                    document.write("<p>Invalid Input! Please refresh the page and enter valid marks.</p>");
+                    break; // Exit the loop if there's an invalid mark
+                }
+                courseMarks.push(mark); // Add the mark to the array
+                total += mark; // Add the mark to total
+            }
+
+            // Check if all marks are valid before calculating average
+            if (courseMarks.length === numOfCourses) {
+                // Calculate the average
+                let average = (total / numOfCourses).toFixed(2);
+
+                // Display the course marks
+                document.write("<h3>Course Marks:</h3>");
+                document.write("<ul>");
+                for (let i = 0; i < courseMarks.length; i++) {
+                    document.write(`<li>Course ${i + 1}: ${courseMarks[i]}</li>`); // Display each course's mark
+                }
+                document.write("</ul>");
+
+                // Display average and grade
+                document.write("<h3>Result:</h3>");
+                if (average >= 90 && average <= 100) {
+                    document.write(`<p>Your final average is ${average}. Your grade is A+.</p>`);
+                } else if (average >= 80) {
+                    document.write(`<p>Your final average is ${average}. Your grade is B.</p>`);
+                } else if (average >= 70) {
+                    document.write(`<p>Your final average is ${average}. Your grade is C.</p>`);
+                } else if (average >= 60) {
+                    document.write(`<p>Your final average is ${average}. Your grade is D.</p>`);
+                } else {
+                    document.write(`<p>Your final average is ${average}. Your grade is F.</p>`);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
